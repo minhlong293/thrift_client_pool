@@ -1,34 +1,47 @@
 package main;
 
-import client.Client;
+import client.DALClient;
 import clientpool.ClientPool;
+import longhm.dal.thrift.MultiTagResult;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MainApp {
+
+    public static final String HOST = "10.60.88.16";
+    public static final int PORT = 9100;
+
     public static void main(String[] args) throws InterruptedException {
-        ClientPool clientPool = new ClientPool("host", 8888);
-        ExecutorService executorService = Executors.newFixedThreadPool(8);
-        for (int i = 0; i < 80; i++) {
+        List<Integer> idList = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            idList.add(i);
+        }
+
+        ClientPool<DALClient> dalClientPool = new ClientPool<>(HOST, PORT, DALClient::new);
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        for (int i = 0; i < 100; i++) {
             executorService.submit(() -> {
-                testPool(clientPool);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                try (DALClient dalClient = dalClientPool.getObjectFromPool()) {
+                    MultiTagResult multiTags = dalClient.getMultiTags(idList);
+                    System.out.println(multiTags.getReturnCode().name());
+                    System.out.println("Count objects " + DALClient.getCount());
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
-        Thread.sleep(10000);
-    }
+        Thread.sleep(90000);
+        System.out.println("Count objects " + DALClient.getCount());
+        System.out.println(dalClientPool.getNumActive());
+        System.out.println(dalClientPool.getNumIdle());
+        System.out.println(dalClientPool.getNumWaiters());
 
-    private static void testPool(ClientPool clientPool) {
-        System.out.println("Thread " + Thread.currentThread().getId() + " is running");
-        try (Client client = clientPool.getObjectFromPool()) {
-            client.sayName();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.gc();
     }
 }

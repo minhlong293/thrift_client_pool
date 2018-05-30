@@ -17,7 +17,6 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
     private PooledObjectState state = PooledObjectState.IDLE;
     private volatile CallStack borrowedBy = NoOpCallStack.INSTANCE;
     private volatile CallStack usedBy = NoOpCallStack.INSTANCE;
-    private volatile long borrowedCount = 0;
     private volatile boolean logAbandoned = false;
 
     public DefaultPooledObject(T object) {
@@ -111,7 +110,6 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
             state = PooledObjectState.ALLOCATED;
             lastBorrowTime = System.currentTimeMillis();
             lastUseTime = lastBorrowTime;
-            borrowedCount++;
             if (logAbandoned) {
                 borrowedBy.fillInStackTrace();
             }

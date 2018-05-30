@@ -26,6 +26,7 @@ public abstract class BaseClientPool<T> implements AutoCloseable {
             try {
                 close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         this.internalPool = new GenericObjectPool<>(factory, poolConfig);
@@ -58,5 +59,14 @@ public abstract class BaseClientPool<T> implements AutoCloseable {
         } catch (Exception e) {
             throw new RuntimeException("Could not return the resource to the pool", e);
         }
+    }
+    public int getNumIdle() {
+        return internalPool.getNumIdle();
+    }
+    public int getNumActive() {
+        return internalPool.getNumActive();
+    }
+    public int getNumWaiters() {
+        return internalPool.getNumWaiters();
     }
 }
