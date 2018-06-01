@@ -1,4 +1,4 @@
-package clientpool;
+package longhm.clientpool;
 
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectState;
