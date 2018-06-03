@@ -4,7 +4,9 @@ import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectFactory;
 
 import java.util.function.BiFunction;
-
+/**
+ * @author longhm
+ */
 public class ClientFactory<T extends BaseClient> implements PooledObjectFactory<T> {
     private String host;
     private int port;

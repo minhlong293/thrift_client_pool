@@ -5,10 +5,16 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 import java.util.function.BiFunction;
 
+/**
+ * An implementation of BaseClientPool.
+ *
+ * @author longhm
+ */
 public class ClientPool<T extends BaseClient> extends BaseClientPool<T> {
     public ClientPool(String host, int port, BiFunction<String, Integer, T> supplier) {
         this(new GenericObjectPoolConfig(), new ClientFactory(host, port, supplier));
     }
+
     public ClientPool(GenericObjectPoolConfig poolConfig, PooledObjectFactory<T> factory) {
         super(poolConfig, factory);
     }

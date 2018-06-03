@@ -3,7 +3,11 @@ package longhm.clientpool;
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
-
+/**
+ * Base client pool
+ *
+ * @author longhm
+ */
 public abstract class BaseClientPool<T> implements AutoCloseable {
     protected GenericObjectPool<T> internalPool;
 

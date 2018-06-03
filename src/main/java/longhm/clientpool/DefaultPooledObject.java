@@ -8,6 +8,9 @@ import org.apache.commons.pool2.impl.NoOpCallStack;
 import java.io.PrintWriter;
 import java.util.Deque;
 
+/**
+ * @author longhm
+ */
 public class DefaultPooledObject<T> implements PooledObject<T> {
     private T object;
     private final long createTime = System.currentTimeMillis();
@@ -22,6 +25,7 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
     public DefaultPooledObject(T object) {
         this.object = object;
     }
+
     @Override
     public T getObject() {
         return object;
@@ -78,7 +82,7 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
             return System.identityHashCode(this) - System.identityHashCode(other);
         }
         // handle int overflow
-        return (int)Math.min(Math.max(lastActiveDiff, Integer.MIN_VALUE), Integer.MAX_VALUE);
+        return (int) Math.min(Math.max(lastActiveDiff, Integer.MIN_VALUE), Integer.MAX_VALUE);
     }
 
     @Override
