@@ -1,9 +1,9 @@
-###### Thrift Client Pool (with auto close resource)
+#### Thrift Client Pool (with auto close resource)
 
 A thrift client pool implementation with AutoClosable, easily return client to pool by using try-catch-resource.
  
 
-###### GUIDE (see demo/src/main/java/ for example):
+##### GUIDE (see demo/src/main/java/ for example):
 
 STEP 1: You must to implement BaseClient class to make it can be use with the pool.
 In CalcClientImpl.java:
