@@ -1,6 +1,6 @@
 #### Thrift Client Pool (with auto close resource)
 
-A thrift client pool implementation with AutoClosable, easily return client to pool by using try-catch-resource.
+A thrift client pool implementation with AutoClosable, make easy for returning client to pool by using try-catch-resource.
  
 
 ##### GUIDE (see demo/src/main/java/ for example):
