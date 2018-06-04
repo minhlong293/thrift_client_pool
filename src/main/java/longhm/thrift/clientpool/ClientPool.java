@@ -11,6 +11,10 @@ import java.util.function.BiFunction;
  * @author longhm
  */
 public class ClientPool<T extends BaseClient> extends BaseClientPool<T> {
+    public ClientPool(GenericObjectPoolConfig poolConfig, String host, int port, BiFunction<String, Integer, T> supplier) {
+        this(poolConfig, new ClientFactory<>(host, port, supplier));
+    }
+
     public ClientPool(String host, int port, BiFunction<String, Integer, T> supplier) {
         this(new GenericObjectPoolConfig(), new ClientFactory(host, port, supplier));
     }
