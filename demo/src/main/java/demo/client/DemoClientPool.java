@@ -1,6 +1,6 @@
 package demo.client;
 
-import longhm.thrift.clientpool.ClientPool;
+import com.github.minhlong293.thrift.clientpool.ClientPool;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

@@ -1,4 +1,4 @@
-package longhm.thrift.clientpool;
+package com.github.minhlong293.thrift.clientpool;
 
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -8,7 +8,7 @@ import java.util.function.BiFunction;
 /**
  * An implementation of BaseClientPool.
  *
- * @author longhm
+ * @author minhlong293
  */
 public class ClientPool<T extends BaseClient> extends BaseClientPool<T> {
     public ClientPool(GenericObjectPoolConfig poolConfig, String host, int port, BiFunction<String, Integer, T> supplier) {

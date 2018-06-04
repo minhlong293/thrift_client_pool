@@ -1,10 +1,10 @@
-package longhm.thrift.clientpool;
+package com.github.minhlong293.thrift.clientpool;
 
 import org.apache.thrift.TException;
 /**
  * Base client class. All clients using for pool must be inherit this class.
  *
- * @author longhm
+ * @author minhlong293
  */
 public abstract class BaseClient implements AutoCloseable {
     private BaseClientPool datasource;

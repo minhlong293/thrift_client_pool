@@ -1,8 +1,8 @@
 package demo.client;
 
 import demo.thrift.CalcService;
-import longhm.thrift.clientpool.BaseClient;
-import longhm.thrift.common.ThriftExceptionHelper;
+import com.github.minhlong293.thrift.clientpool.BaseClient;
+import com.github.minhlong293.thrift.common.ThriftExceptionHelper;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * This class wraps an internal client and implements methods from BaseClient for pooling.
  * All wrapper methods must be synchronize.
  *
- * @author longhm
+ * @author minhlong293
  */
 public class CalcClientImpl extends BaseClient {
     private final String host;

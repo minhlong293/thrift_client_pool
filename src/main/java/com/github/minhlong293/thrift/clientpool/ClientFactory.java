@@ -1,11 +1,11 @@
-package longhm.thrift.clientpool;
+package com.github.minhlong293.thrift.clientpool;
 
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectFactory;
 
 import java.util.function.BiFunction;
 /**
- * @author longhm
+ * @author minhlong293
  */
 public class ClientFactory<T extends BaseClient> implements PooledObjectFactory<T> {
     private String host;

@@ -1,4 +1,4 @@
-package longhm.thrift.common;
+package com.github.minhlong293.thrift.common;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.transport.TTransportException;
@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author longhm
+ * @author minhlong293
  */
 public class ThriftExceptionHelper {
 

@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'longhm'
+group 'com.github.minhlong293'
 
 sourceCompatibility = 1.8
 

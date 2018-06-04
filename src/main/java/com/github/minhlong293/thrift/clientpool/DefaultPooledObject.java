@@ -1,4 +1,4 @@
-package longhm.thrift.clientpool;
+package com.github.minhlong293.thrift.clientpool;
 
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectState;
@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.util.Deque;
 
 /**
- * @author longhm
+ * @author minhlong293
  */
 public class DefaultPooledObject<T> implements PooledObject<T> {
     private T object;

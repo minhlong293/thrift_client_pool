@@ -1,4 +1,4 @@
-package longhm.thrift.clientpool;
+package com.github.minhlong293.thrift.clientpool;
 
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPool;
@@ -6,7 +6,7 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 /**
  * Base client pool
  *
- * @author longhm
+ * @author minhlong293
  */
 public abstract class BaseClientPool<T> implements AutoCloseable {
     protected GenericObjectPool<T> internalPool;
