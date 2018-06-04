@@ -1,4 +1,4 @@
-package longhm.clientpool;
+package longhm.thrift.clientpool;
 
 import org.apache.thrift.TException;
 /**

@@ -1,4 +1,4 @@
-package longhm.common.thrift;
+package longhm.thrift.common;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.transport.TTransportException;

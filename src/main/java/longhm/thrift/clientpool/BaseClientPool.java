@@ -1,4 +1,4 @@
-package longhm.clientpool;
+package longhm.thrift.clientpool;
 
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPool;

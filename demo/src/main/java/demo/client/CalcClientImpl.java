@@ -1,7 +1,7 @@
 package demo.client;
 
 import demo.thrift.CalcService;
-import longhm.clientpool.BaseClient;
+import longhm.thrift.clientpool.BaseClient;
 import longhm.common.thrift.ThriftExceptionHelper;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
