@@ -10,5 +10,5 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    compile project(':ThriftClientPool')
+    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3'
 }

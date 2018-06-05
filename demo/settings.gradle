@@ -1,3 +1,1 @@
 rootProject.name = 'DemoClientPool'
-include ':ThriftClientPool'
-project(':ThriftClientPool').projectDir = new File(settingsDir, "../")
