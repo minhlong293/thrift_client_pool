@@ -10,6 +10,7 @@ dependencies {
     compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3'
 }
 ```
+#### METHOD 1: Wrapper Client Class
 
 STEP 1: You must to implement BaseClient class to make it can be use with the pool.
 In CalcClientImpl.java:
@@ -32,3 +33,6 @@ try (CalcClientImpl calcClient = pool.getObjectFromPool()) {
     calcClient.sayHello();
 }
 ```
+
+#### METHOD 2: Using Java Dynamic Proxy
+
