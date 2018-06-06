@@ -15,7 +15,7 @@ dependencies {
     compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.11.0'
 }
 ```
-#### METHOD 1: Write a wrapper client class yourself
+#### METHOD 1: Write a wrapper client class yourselves
 (see _method1()_ in demo.client.DemoClientPool)
 
 STEP 1: You must to implement BaseClient class to make it can be use with the pool.
