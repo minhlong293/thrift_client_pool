@@ -11,5 +11,5 @@ repositories {
 }
 dependencies {
     compile project(':ThriftClientPool')
-//    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3'
+//    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-1'
 }
