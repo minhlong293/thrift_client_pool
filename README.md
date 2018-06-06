@@ -10,7 +10,8 @@ dependencies {
     compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3'
 }
 ```
-#### METHOD 1: Wrapper Client Class
+#### METHOD 1: Write a wrapper client class yourself
+(see _method1()_ in demo.client.DemoClientPool)
 
 STEP 1: You must to implement BaseClient class to make it can be use with the pool.
 In CalcClientImpl.java:
@@ -34,5 +35,29 @@ try (CalcClientImpl calcClient = pool.getObjectFromPool()) {
 }
 ```
 
-#### METHOD 2: Using Java Dynamic Proxy
+#### METHOD 2: Using ClientWrapper class
+(see _method2()_ in demo.client.DemoClientPool)
 
+Class com.github.minhlong293.thrift.clientwrapper.ClientWrapper takes care all implementation of methods from BaseClient. It uses a Java 
+[Proxy](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html) object to handles exceptions and synchronized methods.
+ 
+```
+//Create pool
+ClientPool<ClientWrapper<Iface, Client>> clientPool = new ClientPool<>(
+                LOCALHOST,
+                PORT,
+                (host, port) -> new ClientWrapper<>(host, port,
+                        (h, p) -> new TFramedTransport(new TSocket(h, p, 500)),
+                        (trans) -> {
+                            TProtocol protocol = new TBinaryProtocol(trans);
+                            return new Client(protocol);
+                        },
+                        Iface.class
+                ));
+                
+// Get client
+try (ClientWrapper<Iface, Client> clientWrapper = clientPool.getObjectFromPool()) {
+    Iface client = clientWrapper.getClient();
+    // the client object is an Iface, so you can call all Iface's functions
+}  
+```
