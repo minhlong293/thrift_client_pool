@@ -4,10 +4,15 @@ A thrift client pool implementation with AutoClosable, make easy for returning c
  
 
 ##### GUIDE (see demo/src/main/java/ for example):
-Gradle (for thrift ver 0.9.3, newer versions will be supported soon):
+Gradle:
 ```
+//for thrift ver 0.9.3
 dependencies {
     compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-1'
+}
+//for thrift ver 0.11.0
+dependencies {
+    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.11.0'
 }
 ```
 #### METHOD 1: Write a wrapper client class yourself
