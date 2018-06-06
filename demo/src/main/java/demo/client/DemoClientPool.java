@@ -44,8 +44,7 @@ public class DemoClientPool {
                 System.out.println("Num objects idle " + clientPool.getNumIdle());
                 try (ClientWrapper<Iface, Client> clientWrapper = clientPool.getObjectFromPool()) {
                     try {
-                        Iface client = clientWrapper.getClient();
-                        System.out.println(client.sayHello());
+                        System.out.println(clientWrapper.getClient().sayHello());
                     } catch (TException e) {
                         e.printStackTrace();
                     }

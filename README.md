@@ -39,7 +39,8 @@ try (CalcClientImpl calcClient = pool.getObjectFromPool()) {
 (see _method2()_ in demo.client.DemoClientPool)
 
 Class com.github.minhlong293.thrift.clientwrapper.ClientWrapper takes care all implementation of methods from BaseClient. It uses a Java 
-[Proxy](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html) object to handles exceptions and synchronized methods.
+[Proxy](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html) object to wrap the real client, so we can handle all exceptions and
+ make all methods synchronized.
  
 ```
 //Create pool
@@ -59,5 +60,6 @@ ClientPool<ClientWrapper<Iface, Client>> clientPool = new ClientPool<>(
 try (ClientWrapper<Iface, Client> clientWrapper = clientPool.getObjectFromPool()) {
     Iface client = clientWrapper.getClient();
     // the client object is an Iface, so you can call all Iface's functions
+    // it is thread-safe as wrapped by InvocationHandler, all methods is synchronized
 }  
 ```
