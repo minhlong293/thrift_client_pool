@@ -13,4 +13,9 @@ public class CalcHandler implements CalcService.Iface {
     public int add(int a, int b) throws TException {
         return a + b;
     }
+
+    @Override
+    public int divide(int a, int b) throws TException {
+        return a/b;
+    }
 }

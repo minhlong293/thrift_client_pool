@@ -11,5 +11,6 @@ repositories {
 }
 dependencies {
     compile project(':ThriftClientPool')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 //    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-1'
 }
