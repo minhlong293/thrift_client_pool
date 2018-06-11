@@ -9,6 +9,13 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', 'thrift/gen-java']
+        }
+    }
+}
 dependencies {
     compile project(':ThriftClientPool')
 //    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-1'
