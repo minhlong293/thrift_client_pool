@@ -1,16 +1,24 @@
 #### Thrift Client Pool (with auto close resource)
 
 A thrift client pool implementation with AutoClosable, make easy for returning client to pool by using try-catch-resource.
- 
+#### Features:
+
+- Don't have to worry about connection status: Client which disconnected to server will be released from pool. A new client will be created if getObjectFromPool() is called.
+- Don't have to worry about thread-safe: If you use method 2 belows, client objects are thread-safe. Pool object is always thread-safe.    
 
 ##### GUIDE (see demo/src/main/java/ for example):
-Gradle (for thrift ver 0.9.3, newer versions will be supported soon):
+Gradle:
 ```
+//for thrift ver 0.9.3
 dependencies {
     compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-1'
 }
+//for thrift ver 0.11.0
+dependencies {
+    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.11.0'
+}
 ```
-#### METHOD 1: Write a wrapper client class yourself
+#### METHOD 1: Write a wrapper client class yourselves
 (see _method1()_ in demo.client.DemoClientPool)
 
 STEP 1: You must to implement BaseClient class to make it can be use with the pool.
@@ -39,7 +47,7 @@ try (CalcClientImpl calcClient = pool.getObjectFromPool()) {
 (see _method2()_ in demo.client.DemoClientPool)
 
 Class com.github.minhlong293.thrift.clientwrapper.ClientWrapper takes care all implementation of methods from BaseClient. It uses a Java 
-[Proxy](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html) object to wrap the real client, so we can handle all exceptions and
+[Proxy](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html) object for wrapping the real client, so we can handle all exceptions and
  make all methods synchronized.
  
 ```
@@ -59,7 +67,7 @@ ClientPool<ClientWrapper<Iface, Client>> clientPool = new ClientPool<>(
 // Get client
 try (ClientWrapper<Iface, Client> clientWrapper = clientPool.getObjectFromPool()) {
     Iface client = clientWrapper.getClient();
-    // the client object is an Iface, so you can call all Iface's functions
+    // the client object is an Iface, so you can call all functions define in Iface interface.
     // it is thread-safe as wrapped by InvocationHandler, all methods is synchronized
 }  
 ```

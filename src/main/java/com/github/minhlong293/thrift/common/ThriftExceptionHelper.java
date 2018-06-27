@@ -1,6 +1,5 @@
 package com.github.minhlong293.thrift.common;
 
-import org.apache.thrift.TException;
 import org.apache.thrift.transport.TTransportException;
 
 import java.util.HashSet;
@@ -27,7 +26,7 @@ public class ThriftExceptionHelper {
     }
 
     public static boolean isDisconnectedException(Exception e) {
-        if (e instanceof TException) {
+        if (e instanceof TTransportException) {
             TTransportException te = (TTransportException) e;
             if (THRIFT_EXCEPTION_CAUSE_DISCONNECTED.contains(te.getType())) {
                 return true;
