@@ -2,6 +2,7 @@ package demo.client;
 
 import com.github.minhlong293.thrift.clientpool.ClientPool;
 import com.github.minhlong293.thrift.clientwrapper.ClientWrapper;
+import demo.service.MainService;
 import demo.thrift.CalcService.Client;
 import demo.thrift.CalcService.Iface;
 import org.apache.thrift.TException;
@@ -16,7 +17,6 @@ import java.util.concurrent.Executors;
 public class DemoClientPool {
 
     public static final String LOCALHOST = "localhost";
-    public static final int PORT = 8888;
 
     public static void main(String[] args) {
 //        method1();
@@ -26,7 +26,7 @@ public class DemoClientPool {
     private static void method2() {
         ClientPool<ClientWrapper<Iface, Client>> clientPool = new ClientPool<>(
                 LOCALHOST,
-                PORT,
+                MainService.PORT,
                 (host, port) -> new ClientWrapper<>(host, port,
                         (h, p) -> new TFramedTransport(new TSocket(h, p, 500)),
                         (trans) -> {
@@ -53,7 +53,7 @@ public class DemoClientPool {
     }
 
     private static void method1() {
-        ClientPool<CalcClientImpl> pool = new ClientPool<>(LOCALHOST, PORT, CalcClientImpl::new);
+        ClientPool<CalcClientImpl> pool = new ClientPool<>(LOCALHOST, MainService.PORT, CalcClientImpl::new);
 
         Executor executor = Executors.newFixedThreadPool(4);
         for (int i = 0; i < 10; i++) {

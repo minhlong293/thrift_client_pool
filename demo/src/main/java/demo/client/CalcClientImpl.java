@@ -1,8 +1,8 @@
 package demo.client;
 
-import demo.thrift.CalcService;
 import com.github.minhlong293.thrift.clientpool.BaseClient;
 import com.github.minhlong293.thrift.common.ThriftExceptionHelper;
+import demo.thrift.CalcService;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
