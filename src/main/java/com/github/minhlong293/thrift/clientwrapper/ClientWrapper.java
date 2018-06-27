@@ -119,9 +119,9 @@ public class ClientWrapper<T, K extends T> extends BaseClient {
                     if (e.getTargetException() instanceof TException) {
                         checkTException((TException) e.getTargetException());
                     }
+                    throw e.getTargetException();
                 }
             }
-            throw new TTransportException();
         }
     }
 }
