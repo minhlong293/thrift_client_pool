@@ -8,10 +8,13 @@ import org.apache.thrift.transport.TNonblockingServerTransport;
 import org.apache.thrift.transport.TTransportException;
 
 public class MainService {
+
+    public static final int PORT = 8888;
+
     public static void main(String[] args) {
         TNonblockingServerTransport trans = null;
         try {
-            trans = new TNonblockingServerSocket(8888);
+            trans = new TNonblockingServerSocket(PORT);
             TThreadedSelectorServer.Args config = new TThreadedSelectorServer.Args(trans);
             config.processor(new CalcService.Processor<>(new CalcHandler()));
             TThreadedSelectorServer threadedSelectorServer = new TThreadedSelectorServer(config);
