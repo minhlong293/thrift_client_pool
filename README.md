@@ -11,11 +11,11 @@ Gradle:
 ```
 //for thrift ver 0.9.3
 dependencies {
-    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-1'
+    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-2'
 }
 //for thrift ver 0.11.0
 dependencies {
-    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.11.0'
+    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.11.0-2'
 }
 ```
 #### METHOD 1: Write a wrapper client class yourselves
