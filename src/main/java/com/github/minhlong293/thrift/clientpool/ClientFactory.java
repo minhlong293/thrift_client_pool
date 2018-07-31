@@ -3,24 +3,30 @@ package com.github.minhlong293.thrift.clientpool;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectFactory;
 
-import java.util.function.BiFunction;
+import java.util.function.Supplier;
+
 /**
  * @author minhlong293
  */
 public class ClientFactory<T extends BaseClient> implements PooledObjectFactory<T> {
-    private String host;
-    private int port;
-    private BiFunction<String, Integer, T> supplier;
+    private Supplier<T> clientSupplier;
+//    private String host;
+//    private int port;
+//    private BiFunction<String, Integer, T> supplier;
 
-    public ClientFactory(String host, int port, BiFunction<String, Integer, T> supplier) {
-        this.host = host;
-        this.port = port;
-        this.supplier = supplier;
+    public ClientFactory(Supplier<T> clientSupplier) {
+        this.clientSupplier = clientSupplier;
     }
+
+//    public ClientFactory(String host, int port, BiFunction<String, Integer, T> supplier) {
+//        this.host = host;
+//        this.port = port;
+//        this.supplier = supplier;
+//    }
 
     @Override
     public PooledObject<T> makeObject() throws Exception {
-        return new DefaultPooledObject<>(supplier.apply(this.host, this.port));
+        return new DefaultPooledObject<>(clientSupplier.get());
     }
 
     @Override
