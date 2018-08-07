@@ -7,7 +7,6 @@ import demo.thrift.CalcService.Client;
 import demo.thrift.CalcService.Iface;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 
@@ -26,14 +25,9 @@ public class DemoClientPool {
 
     private static void method2() {
         ClientPool<ClientWrapper<Iface, Client>> clientPool = new ClientPool<>(
-                LOCALHOST,
-                MainService.PORT,
-                (host, port) -> new ClientWrapper<>(host, port,
-                        (h, p) -> new TFramedTransport(new TSocket(h, p, 500)),
-                        (trans) -> {
-                            TProtocol protocol = new TBinaryProtocol(trans);
-                            return new Client(protocol);
-                        },
+                () -> new ClientWrapper<>(
+                        () -> new TFramedTransport(new TSocket(LOCALHOST, MainService.PORT)),
+                        tTransport -> new Client(new TBinaryProtocol(tTransport)),
                         Iface.class
                 ));
         Executor executor = Executors.newFixedThreadPool(4);
@@ -54,7 +48,7 @@ public class DemoClientPool {
     }
 
     private static void method1() {
-        ClientPool<CalcClientImpl> pool = new ClientPool<>(LOCALHOST, MainService.PORT, CalcClientImpl::new);
+        ClientPool<CalcClientImpl> pool = new ClientPool<>(() -> new CalcClientImpl(LOCALHOST, MainService.PORT));
 
         Executor executor = Executors.newFixedThreadPool(4);
         for (int i = 0; i < 10; i++) {

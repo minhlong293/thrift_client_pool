@@ -11,11 +11,11 @@ Gradle:
 ```
 //for thrift ver 0.9.3
 dependencies {
-    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-2'
+    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.9.3-3'
 }
 //for thrift ver 0.11.0
 dependencies {
-    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.11.0-2'
+    compile group: 'com.github.minhlong293', name: 'clientpool', version: '0.11.0-3'
 }
 ```
 #### METHOD 1: Write a wrapper client class yourselves
@@ -53,14 +53,9 @@ Class com.github.minhlong293.thrift.clientwrapper.ClientWrapper takes care all i
 ```
 //Create pool
 ClientPool<ClientWrapper<Iface, Client>> clientPool = new ClientPool<>(
-                LOCALHOST,
-                PORT,
-                (host, port) -> new ClientWrapper<>(host, port,
-                        (h, p) -> new TFramedTransport(new TSocket(h, p, 500)),
-                        (trans) -> {
-                            TProtocol protocol = new TBinaryProtocol(trans);
-                            return new Client(protocol);
-                        },
+                () -> new ClientWrapper<>(
+                        () -> new TFramedTransport(new TSocket(HOST, PORT)),
+                        tTransport -> new Client(new TBinaryProtocol(tTransport)),
                         Iface.class
                 ));
                 
