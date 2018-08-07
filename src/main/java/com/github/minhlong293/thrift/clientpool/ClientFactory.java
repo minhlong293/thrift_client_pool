@@ -10,19 +10,10 @@ import java.util.function.Supplier;
  */
 public class ClientFactory<T extends BaseClient> implements PooledObjectFactory<T> {
     private Supplier<T> clientSupplier;
-//    private String host;
-//    private int port;
-//    private BiFunction<String, Integer, T> supplier;
 
     public ClientFactory(Supplier<T> clientSupplier) {
         this.clientSupplier = clientSupplier;
     }
-
-//    public ClientFactory(String host, int port, BiFunction<String, Integer, T> supplier) {
-//        this.host = host;
-//        this.port = port;
-//        this.supplier = supplier;
-//    }
 
     @Override
     public PooledObject<T> makeObject() throws Exception {
