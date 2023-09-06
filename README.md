@@ -3,8 +3,8 @@
 A thrift client pool implementation with AutoClosable, make easy for returning client to pool by using try-catch-resource.
 #### Features:
 
-- Don't have to worry about connection status: Client which disconnected to server will be released from pool. A new client will be created if getObjectFromPool() is called.
-- Don't have to worry about thread-safe: If you use method 2 belows, client objects are thread-safe. Pool object is always thread-safe.    
+- Client which disconnected to server will be released from pool. A new client will be created if getObjectFromPool() is called.
+- Thread-safe: If you use method 2 belows, client objects are thread-safe. Pool object is always thread-safe.    
 
 ##### GUIDE (see demo/src/main/java/ for example):
 Gradle:
